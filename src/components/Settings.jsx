@@ -4,6 +4,7 @@ import axios from 'axios';
 import SettingsForm from './SettingsForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom';
 
 const Settings = () => {
     const [questions, setQuestions] = useState([]);
@@ -20,7 +21,9 @@ const Settings = () => {
 
     return (
         <div className='container'>
+            <Link to={`/`}>
             <FontAwesomeIcon icon={faCircleChevronLeft} />
+            </Link>
             <div className='row'>
                 <div className='col col-md-6'>
                     <h2>Add a question</h2>

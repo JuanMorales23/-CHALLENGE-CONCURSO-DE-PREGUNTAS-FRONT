@@ -5,12 +5,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Game from './Game';
 
 const Home = () => {
     const [players, setPlayers] = useState([]);
     const username = useRef();
+    let val = {};
 
     const getPlayers = () => {
+        axios.get('http://localhost:8080/player').then(({data}) => setPlayers(data));
+    }
+
+    const getPlayerByName = () => {
         axios.get('http://localhost:8080/player').then(({data}) => setPlayers(data));
     }
 
@@ -19,7 +25,13 @@ const Home = () => {
     }
 
     const handleForm = () => {
-        let val = {
+
+        if(username.current.value === response){
+
+        }else{
+
+        }
+        val = {
             name: username.current.value,
             score: 0
         }
@@ -39,7 +51,8 @@ const Home = () => {
                                 <Form.Label>Player</Form.Label>
                                 <Form.Control type="text" placeholder="Enter username" ref={username} required/>
                             </Form.Group>
-                            <Button variant="primary" onClick={() => {handleForm()}}>
+                            <Button variant="primary" onClick={() => {handleForm()}} 
+                            as={Link} to={`/game/${players.id}`}>
                                 Start
                             </Button>
                         </Form>
