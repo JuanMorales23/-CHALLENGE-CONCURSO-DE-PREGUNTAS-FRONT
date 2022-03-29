@@ -5,12 +5,16 @@ import {
   Route
 } from "react-router-dom";
 import Home from './components/Home'
+import Settings from './components/Settings';
+import Game from './components/Game';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
+          <Route path="/settings" element={<Settings />} exact />
+          <Route path="/game" element={<Game />} exact />
           <Route path="/" element={<Home />} />
         </Routes>
       </Router>

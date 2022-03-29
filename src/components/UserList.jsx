@@ -6,7 +6,6 @@ const UserList = ({players}) => {
         <h3>
             User list's
         </h3>
-
         {
             players.map(player => (
                 <div className='mb-3 border rounded p-3' key={player.id}>
