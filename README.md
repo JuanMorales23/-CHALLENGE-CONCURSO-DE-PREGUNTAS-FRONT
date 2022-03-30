@@ -5,7 +5,8 @@ Para configurar el proyecto debemos tener instalados los siguientes programas:
 1. Compilador de java como IntelliJ IDEA
 2. jdk en su versión 8
 3. Mongodb
-4. Visual Studio Code
+4. NodeJS
+5. Visual Studio Code
 
 La conexión con la base de datos tiene los valores por defecto, utilizandose en local, con el puerto 27017 y nombre de base de datos: challenge-preguntas
 Para habilitar el servidor que nos permita una conexión con la db, ejecutamos el programa mongod.exe.
