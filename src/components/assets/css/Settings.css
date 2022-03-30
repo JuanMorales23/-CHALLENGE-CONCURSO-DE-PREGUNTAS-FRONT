@@ -1,0 +1,10 @@
+.samebg{
+    height: 150vh;
+    width: 150vw;
+    background: rgb(174, 238, 224);
+    background: radial-gradient(circle, rgb(120, 212, 205) 0%, rgba(148,187,233,1) 100%);
+}
+
+.list{
+    background: rgb(79, 135, 209);
+}

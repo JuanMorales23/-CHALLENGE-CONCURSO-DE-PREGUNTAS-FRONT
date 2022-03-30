@@ -10,21 +10,15 @@ import '../components/assets/css/Home.css';
 
 const Home = () => {
     const [players, setPlayers] = useState([]);
-    const [id, setId] = useState();
     const [used, setUsed] = useState(false);
-    const [playerName, setPlayerName] = useState("");
     const [warning, setWarning] = useState("");
     const username = useRef();
     const history = useNavigate();
-    let val = {};
 
     const getPlayers = () => {
         axios.get('http://localhost:8080/player').then(({ data }) => setPlayers(data));
     }
 
-    const getPlayerByName = (name) => {
-        axios.get(`http://localhost:8080/player/getId/${name}`).then(({ data }) => setId(data));
-    }
 
     const usedPlayer = (name) => {
         axios.get(`http://localhost:8080/player/exist/${name}`).then(({ data }) => { setUsed(data) });
@@ -37,7 +31,6 @@ const Home = () => {
     const handleInputChange = () => {
         let name = username.current.value;
         usedPlayer(name);
-        console.log("Tecleado: " + name);
         if (used === true) {
             setWarning("Username has already used")
         } else {
@@ -50,20 +43,17 @@ const Home = () => {
         let name = username.current.value;
         usedPlayer(name);
         if (used === true) {
-            setWarning("Username has already used")
+            setWarning("Username has already used");
         } else {
             setWarning("You can use it!");
-            setPlayerName(name);
-            val = {
+            let val = {
                 name: username.current.value,
                 score: 0
             }
-
             setPlayer(val);
-            history(`/game/${playerName}`);
+            let url = username.current.value;
+            history(`/game/${url}`);
         }
-
-        //as={Link} to={`/game/${urlId}`}
     }
 
     useEffect(getPlayers, []);
@@ -72,8 +62,16 @@ const Home = () => {
     return (
         <div>
             <div className='container'>
-                <div className='row'>
-                    <div className='col col-md-3 form'>
+            <div className='row d-flex justify-content-end mb-auto'>
+                        <div className='col '>
+                            <Button variant="outline-dark" as={Link} to="/settings">
+                                <FontAwesomeIcon icon={faGear} />
+                                Settings
+                            </Button>{' '}
+                        </div>
+                    </div>
+                <div className='row d-flex justify-content-center align-items-center mt-5'>
+                    <div className='col col-md-5 form'>
                         <Form onSubmit={handleForm}>
                             <Form.Group className="mb-3" controlId="form">
                                 <Form.Label>Player</Form.Label>
@@ -85,12 +83,6 @@ const Home = () => {
                                 Start!
                             </Button>
                         </Form>
-                    </div>
-                    <div className='col col-md-2 settings'>
-                        <Button variant="outline-info" as={Link} to="/settings">
-                            <FontAwesomeIcon icon={faGear} />
-                            Settings
-                        </Button>{' '}
                     </div>
                 </div>
             </div>

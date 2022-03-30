@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import EndGame from './EndGame'
 import Timer from './Timer'
 
@@ -13,8 +12,8 @@ const Question = ({ level, setLevel, score, setScore, name }) => {
     const [options, setOptions] = useState([]);
     const [restart, setRestart] = useState(false);
     const [pause, setPause] = useState(false);
-    const [modalEndGame, setModalEndGame] = useState(false);
-    const [modalExitGame, setModalExitGame] = useState(false);
+    const [visible, setVisible] = useState(false);
+    const [exitGame, setExitGame] = useState(false);
     const [disButtons, setDisButtons] = useState({ btns: [{ id: 1, actually: false }, { id: 2, actually: false }, { id: 4, actually: false }, { id: 4, actually: false }] });
     const [button1, setButton1] = useState("secondary");
     const [button2, setButton2] = useState("info");
@@ -25,15 +24,20 @@ const Question = ({ level, setLevel, score, setScore, name }) => {
     const getQuestion = async () => {
         let optionsArray = [];
         axios.get(`http://localhost:8080/question/level/${level}`).then(({ data }) => {
-            setQuestion(data[0].question);
-            optionsArray[0] = data[0].incorrect1;
-            optionsArray[1] = data[0].incorrect2;
-            optionsArray[2] = data[0].incorrect3;
-            optionsArray[3] = data[0].correctAnswer;
-            setCorrectAnswer(data[0].correctAnswer);
+            let rnd = getRandomInt(0, data.length);
+            setQuestion(data[rnd].question);
+            optionsArray[0] = data[rnd].incorrect1;
+            optionsArray[1] = data[rnd].incorrect2;
+            optionsArray[2] = data[rnd].incorrect3;
+            optionsArray[3] = data[rnd].correctAnswer;
+            setCorrectAnswer(data[rnd].correctAnswer);
             randomizeOptions(optionsArray);
         });
     };
+
+   const getRandomInt = (min, max) => {
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
 
     const verifyQuestion = (answer, btn) => {
         if (level <= 5) {
@@ -64,11 +68,13 @@ const Question = ({ level, setLevel, score, setScore, name }) => {
 
     const handleEndGame = () => {
         disableAllButtons();
-        setModalEndGame(true);
+        setVisible(true);
     }
 
     const handleExitGame = () => {
-        setModalExitGame(true);
+        setPause(true);
+        setExitGame(true);
+        setVisible(true);
     }
 
     const randomizeOptions = (array) => {
@@ -170,6 +176,8 @@ const Question = ({ level, setLevel, score, setScore, name }) => {
         if (level <= 5) {
             const i = (level + 1);
             setLevel(i);
+        }else{
+            handleEndGame();
         }
     };
 
@@ -182,17 +190,18 @@ const Question = ({ level, setLevel, score, setScore, name }) => {
         <div>
             <div className='row'>
                 <div className=''>
-                    <Link to={`/`}
-                onClick={() => {handleExitGame()}} >
+                    <Button 
+                        onClick={() => {handleExitGame()}} >
                         <FontAwesomeIcon icon={faCircleChevronLeft} size="2x" />
-                    </Link>
+                        <p>Back</p>
+                    </Button>
                 </div>
             </div>
             <Modal.Dialog size="lg">
                 <Modal.Header>
                     <Modal.Title>
-                        <b>Tiempo: {//<Timer restart={restart} pause={pause}  setModalEndGame={setModalEndGame} />
-                        }
+                        <b>Tiempo: <Timer restart={restart} pause={pause} visible={visible} 
+                        setVisible={setVisible} handleEndGame={handleEndGame} />
                             s
                         </b>
                     </Modal.Title>
@@ -233,7 +242,10 @@ const Question = ({ level, setLevel, score, setScore, name }) => {
                     </table>
                 </Modal.Footer>
             </Modal.Dialog>
-            <EndGame modalEndGame={modalEndGame} level={level} score={score} name={name} />
+            <EndGame visible={visible} setVisible={setVisible} score={score} name={name} exitGame={exitGame}
+                setExitGame={setExitGame} setPause={setPause} handleEndGame={handleEndGame}
+            />
+            
         </div>
     )
 }

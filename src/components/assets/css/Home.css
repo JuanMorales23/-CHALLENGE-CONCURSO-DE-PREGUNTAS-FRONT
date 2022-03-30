@@ -7,4 +7,5 @@
     border: solid;
     border-color: rgb(24, 96, 160);   
     border-radius: 2%;
+    justify-content: center;
 }

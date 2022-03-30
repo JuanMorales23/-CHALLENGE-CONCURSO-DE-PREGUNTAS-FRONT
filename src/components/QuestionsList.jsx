@@ -1,24 +1,24 @@
 import React, { useEffect } from 'react';
 import Table from "react-bootstrap/Table";
+import '../components/assets/css/Settings.css'
 
 const QuestionsList = ({ questions }) => {
 
     useEffect(() => {
     }, [questions])
-    
+
     return (
         <div>
             <h3>
-                User list's
+                Questions list
             </h3>
-            <Table striped bordered hover responsive="sm">
+            <Table striped bordered hover responsive="md" className='list'>
                 <thead>
                     <tr>
                         <th>Category</th>
                         <th>Level</th>
                         <th>Question</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th>Answer</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,20 +35,13 @@ const QuestionsList = ({ questions }) => {
                                         {q.question}
                                     </td>
                                     <td>
-                                        {//to edit
-                                        }
+                                        {q.correctAnswer}
                                     </td>
-                                    <td>
-                                        {}
-                                    </td>
-                     
-
                             </tr>
                         ))
                     }
                 </tbody>
             </Table>
-
         </div>
     )
 }

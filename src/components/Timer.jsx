@@ -1,13 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
 
-const Timer = ({restart, pause, setI, setVisible}) => {
-    const [num, setNum] = useState(30);    
+const Timer = ({restart, pause, setVisible, handleEndGame}) => {
+    const [num, setNum] = useState(60);    
     let intervalRef = useRef();
 
     const decreaseNum = () => setNum((prev) => prev - 1);
 
     useEffect(() => {       
-        setNum(30);
+        setNum(60);
     }, [restart]);
 
     useEffect(() => {        
@@ -22,8 +22,7 @@ const Timer = ({restart, pause, setI, setVisible}) => {
     useEffect(() => {
         if(num === 0){
             clearInterval(intervalRef.current);
-            setI(10);
-            setVisible(true);
+            handleEndGame();
         }
     }, [num]);
 

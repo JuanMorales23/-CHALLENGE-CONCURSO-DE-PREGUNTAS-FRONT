@@ -13,7 +13,8 @@ const SettingsForm = ({ setQuestion }) => {
     const incorrect2 = useRef();
     const incorrect3 = useRef();
 
-    const handleForm = () => {
+    const handleForm = (e) => {
+        e.preventDefault();
         let val = {
             category: category.current.value,
             level: level.current.value,
@@ -38,7 +39,7 @@ const SettingsForm = ({ setQuestion }) => {
 
     return (
         <div>
-            <Form >
+            <Form onSubmit={handleForm}>
                 <Form.Group className="mb-3" controlId="formCategory">
                     <div className='row'>
                         <div className='col col-md-6'>
@@ -76,7 +77,7 @@ const SettingsForm = ({ setQuestion }) => {
                     <Form.Label>Incorrect option 3</Form.Label>
                     <Form.Control type="text" placeholder="Type the incorrect option" ref={incorrect3} required />
                 </Form.Group>
-                <Button variant="primary" onClick={() => { handleForm() }}>
+                <Button variant="primary" type="submit" >
                     Submit
                 </Button>
             </Form>
