@@ -1,0 +1,10 @@
+.settings{
+    padding-top: 2%;
+    align-items: end;
+}
+
+.form{
+    border: solid;
+    border-color: rgb(24, 96, 160);   
+    border-radius: 2%;
+}
