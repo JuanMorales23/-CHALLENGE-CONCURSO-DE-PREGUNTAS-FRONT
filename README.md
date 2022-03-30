@@ -1,70 +1,19 @@
-# Getting Started with Create React App
+# CHALLENGE-CONCURSO-DE-PREGUNTAS-FRONT
+Reto técnico para sofka u
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Para configurar el proyecto debemos tener instalados los siguientes programas:
+1. Compilador de java como IntelliJ IDEA
+2. jdk en su versión 8
+3. Mongodb
+4. Visual Studio Code
 
-## Available Scripts
+La conexión con la base de datos tiene los valores por defecto, utilizandose en local, con el puerto 27017 y nombre de base de datos: challenge-preguntas
+Para habilitar el servidor que nos permita una conexión con la db, ejecutamos el programa mongod.exe.
 
-In the project directory, you can run:
+Luego de ello corremos en Intellij el microservicio para permitir el consumo de la API, éste también se localiza en local utilizando el puerto por defecto 8080.
 
-### `npm start`
+Seguidamente se procede utilizar la parte del front la cual podemos correr en Visual Studio Code
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Para ello descargamos el repositorio con la respectiva parte del front y por consola utilizamos el comando "npm install"
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Después de que haya finalizado la descarga utilizamos el comando "npm start" para iniciar nuestro servidor local, que por defecto está en el puerto 3000
