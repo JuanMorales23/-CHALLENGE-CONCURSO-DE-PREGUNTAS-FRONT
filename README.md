@@ -10,6 +10,8 @@ Para configurar el proyecto debemos tener instalados los siguientes programas:
 La conexión con la base de datos tiene los valores por defecto, utilizandose en local, con el puerto 27017 y nombre de base de datos: challenge-preguntas
 Para habilitar el servidor que nos permita una conexión con la db, ejecutamos el programa mongod.exe.
 
+Las preguntas se encuentran en el archivo questions.json ubicado en el repositorio del back, dicho archivo es la colección de preguntas que son obtenidas por el juego.
+
 Luego de ello corremos en Intellij el microservicio para permitir el consumo de la API, éste también se localiza en local utilizando el puerto por defecto 8080.
 
 Seguidamente se procede utilizar la parte del front la cual podemos correr en Visual Studio Code
